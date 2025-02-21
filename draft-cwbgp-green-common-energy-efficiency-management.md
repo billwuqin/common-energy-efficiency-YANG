@@ -223,43 +223,28 @@ The module imports types defined in {{!RFC6991}}.
 
 # Security Considerations
 
-  This section uses the template described in Section 3.7 of {{?I-D.ietf-netmod-rfc8407bis}}.
+  This section is modeled after the template described in {{Section 3.7 of ?I-D.ietf-netmod-rfc8407bis}}.
 
-   The YANG modules specified in this document define a schema for data
-   that is designed to be accessed via network management protocol such
-   as NETCONF {{!RFC6241}} or RESTCONF {{!RFC8040}}.These network management
-   protocols are required to use a secure transport layer and mutual
-   authentication, e.g., SSH {{?RFC6242}} without the "none" authentication
-   option, Transport Layer Security (TLS) {{?RFC8446}} with mutual X.509
-   authentication, and HTTPS with HTTP authentication ({{Section 11 of ?RFC9110}}).
+   The "ietf-energy-efficiency-common" YANG module defines a data model that is
+   designed to be accessed via YANG-based management protocols, such as
+   NETCONF {{?RFC6241}} and RESTCONF {{?RFC8040}}. These protocols have to
+   use a secure transport layer (e.g., SSH {{?RFC4252}}, TLS {{?RFC8446}}, and
+   QUIC {{?RFC9000}}) and have to use mutual authentication.
 
    The Network Configuration Access Control Model (NACM) {{!RFC8341}}
    provides the means to restrict access for particular NETCONF or
    RESTCONF users to a preconfigured subset of all available NETCONF or
    RESTCONF protocol operations and content.
 
-   There are several data nodes defined in this YANG module that are
-   writable/creatable/deletable (i.e., config true, which is the
-   default).  These data nodes may be considered sensitive or vulnerable
-   in some network environments.  Write operations (e.g., edit-config)
-   to these data nodes without proper protection can have a negative
-   effect on network operations. Specifically, the following subtrees and data nodes have particular
-sensitivities/vulnerabilities:
+   The YANG module defines a set of identities, types, and
+   groupings. These nodes are intended to be reused by other YANG
+   modules. The module by itself does not expose any data nodes that
+   are writable, data nodes that contain read-only state, or RPCs.
+   As such, there are no additional security issues related to
+   the YANG module that need to be considered.
 
- energy-saving-modes:
- : This leaf specifies the energy saving mode set globally on a device.
-
- esm-ntw:energy-saving/esm-ntw:enabled:
- : This leaf enable/disables energy saving state of specific component.
-
-   Some of the readable data nodes in this YANG module may be considered
-   sensitive or vulnerable in some network environments.  It is thus
-   important to control read access (e.g., via get, get-config, or
-   notification) to these data nodes. Specifically, the following subtrees and data nodes have particular
-sensitivities/vulnerabilities:
-
-   'TBC':
-   : ....
+   Modules that use the groupings that are defined in this document
+   should identify the corresponding security considerations.
 
 # IANA Considerations
 
