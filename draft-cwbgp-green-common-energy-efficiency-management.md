@@ -18,22 +18,20 @@ keyword:
 
 author:
  -
-   fullname: Gen Chen
+   fullname: Qiufang Ma
    organization:  Huawei
    country: China
-   email: chengen@huawei.com
+   email: maqiufang1@huawei.com
  -
    fullname: Qin Wu
-   role: editor
    organization: Huawei
    country: China
    email: bill.wu@huawei.com
  -
-   fullname: Mohamed Boucadair
-   role: editor
+   fullname: Emile Stephan
    organization: Orange
    country: France
-   email:  mohamed.boucadair@orange.com
+   email:  emile.stephan@orange.com
  -
    fullname: Oscar Gonzales de Dios
    organization: Telefonica I+D
