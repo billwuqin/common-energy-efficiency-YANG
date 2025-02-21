@@ -24,6 +24,17 @@ Abstract
    Network models, energy saving network inventory model and energy
    saving device models.
 
+Discussion Venues
+
+   This note is to be removed before publishing as an RFC.
+
+   Discussion of this document takes place on the Getting Ready for
+   Energy-Efficient Networking mailing list (green@ietf.org), which is
+   archived at https://mailarchive.ietf.org/arch/browse/green/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/QiufangMa/common-energy-efficiency-YANG.
+
 Status of This Memo
 
    This Internet-Draft is submitted in full conformance with the
@@ -727,45 +738,29 @@ Table of Contents
 
 5.  Security Considerations
 
-   This section uses the template described in Section 3.7 of
-   [I-D.ietf-netmod-rfc8407bis].
+   This section is modeled after the template described in Section 3.7
+   of [I-D.ietf-netmod-rfc8407bis].
 
-   The YANG modules specified in this document define a schema for data
-   that is designed to be accessed via network management protocol such
-   as NETCONF [RFC6241] or RESTCONF [RFC8040].These network management
-   protocols are required to use a secure transport layer and mutual
-   authentication, e.g., SSH [RFC6242] without the "none" authentication
-   option, Transport Layer Security (TLS) [RFC8446] with mutual X.509
-   authentication, and HTTPS with HTTP authentication (Section 11 of
-   [RFC9110]).
+   The "ietf-energy-efficiency-common" YANG module defines a data model
+   that is designed to be accessed via YANG-based management protocols,
+   such as NETCONF [RFC6241] and RESTCONF [RFC8040].  These protocols
+   have to use a secure transport layer (e.g., SSH [RFC4252], TLS
+   [RFC8446], and QUIC [RFC9000]) and have to use mutual authentication.
 
    The Network Configuration Access Control Model (NACM) [RFC8341]
    provides the means to restrict access for particular NETCONF or
    RESTCONF users to a preconfigured subset of all available NETCONF or
    RESTCONF protocol operations and content.
 
-   There are several data nodes defined in this YANG module that are
-   writable/creatable/deletable (i.e., config true, which is the
-   default).  These data nodes may be considered sensitive or vulnerable
-   in some network environments.  Write operations (e.g., edit-config)
-   to these data nodes without proper protection can have a negative
-   effect on network operations.  Specifically, the following subtrees
-   and data nodes have particular sensitivities/vulnerabilities:
+   The YANG module defines a set of identities, types, and groupings.
+   These nodes are intended to be reused by other YANG modules.  The
+   module by itself does not expose any data nodes that are writable,
+   data nodes that contain read-only state, or RPCs.  As such, there are
+   no additional security issues related to the YANG module that need to
+   be considered.
 
-   energy-saving-modes:  This leaf specifies the energy saving mode set
-      globally on a device.
-
-   esm-ntw:energy-saving/esm-ntw:enabled:  This leaf enable/disables
-      energy saving state of specific component.
-
-      Some of the readable data nodes in this YANG module may be
-      considered sensitive or vulnerable in some network environments.
-      It is thus important to control read access (e.g., via get, get-
-      config, or notification) to these data nodes.  Specifically, the
-      following subtrees and data nodes have particular sensitivities/
-      vulnerabilities:
-
-      'TBC':  ....
+   Modules that use the groupings that are defined in this document
+   should identify the corresponding security considerations.
 
 6.  IANA Considerations
 
@@ -808,11 +803,6 @@ Table of Contents
               DOI 10.17487/RFC6020, October 2010,
               <https://www.rfc-editor.org/rfc/rfc6020>.
 
-   [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
-              and A. Bierman, Ed., "Network Configuration Protocol
-              (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
-              <https://www.rfc-editor.org/rfc/rfc6241>.
-
    [RFC6991]  Schoenwaelder, J., Ed., "Common YANG Data Types",
               RFC 6991, DOI 10.17487/RFC6991, July 2013,
               <https://www.rfc-editor.org/rfc/rfc6991>.
@@ -820,10 +810,6 @@ Table of Contents
    [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
               RFC 7950, DOI 10.17487/RFC7950, August 2016,
               <https://www.rfc-editor.org/rfc/rfc7950>.
-
-   [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
-              Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
-              <https://www.rfc-editor.org/rfc/rfc8040>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
@@ -897,14 +883,23 @@ Table of Contents
               04, 12 March 2013, <https://datatracker.ietf.org/doc/html/
               draft-manral-bmwg-power-usage-04>.
 
-   [RFC6242]  Wasserman, M., "Using the NETCONF Protocol over Secure
-              Shell (SSH)", RFC 6242, DOI 10.17487/RFC6242, June 2011,
-              <https://www.rfc-editor.org/rfc/rfc6242>.
+   [RFC4252]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
+              Authentication Protocol", RFC 4252, DOI 10.17487/RFC4252,
+              January 2006, <https://www.rfc-editor.org/rfc/rfc4252>.
+
+   [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
+              and A. Bierman, Ed., "Network Configuration Protocol
+              (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
+              <https://www.rfc-editor.org/rfc/rfc6241>.
 
    [RFC7326]  Parello, J., Claise, B., Schoening, B., and J. Quittek,
               "Energy Management Framework", RFC 7326,
               DOI 10.17487/RFC7326, September 2014,
               <https://www.rfc-editor.org/rfc/rfc7326>.
+
+   [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
+              Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
+              <https://www.rfc-editor.org/rfc/rfc8040>.
 
    [RFC8340]  Bjorklund, M. and L. Berger, Ed., "YANG Tree Diagrams",
               BCP 215, RFC 8340, DOI 10.17487/RFC8340, March 2018,
@@ -919,10 +914,10 @@ Table of Contents
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
               <https://www.rfc-editor.org/rfc/rfc8446>.
 
-   [RFC9110]  Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
-              Ed., "HTTP Semantics", STD 97, RFC 9110,
-              DOI 10.17487/RFC9110, June 2022,
-              <https://www.rfc-editor.org/rfc/rfc9110>.
+   [RFC9000]  Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
+              Multiplexed and Secure Transport", RFC 9000,
+              DOI 10.17487/RFC9000, May 2021,
+              <https://www.rfc-editor.org/rfc/rfc9000>.
 
 Acknowledgments
 
