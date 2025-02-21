@@ -63,9 +63,9 @@ device models.
 
 The IETF has specified YANG modules for energy efficiency Management,
 e.g., Energy Saving Network models {{?I-D.cwbgp-green-energy-saving-management}},
-Power Management Device Model {{?I-D.li-green-power}}.  
+Power Management Device Model {{?I-D.li-green-power}}.
 Other relevant YANG data models are Network topologies Base Model {{?RFC8345}}
-and Network Inventory Base Model {{?I-D.ietf-ivy-network-inventory-yang}}.  
+and Network Inventory Base Model {{?I-D.ietf-ivy-network-inventory-yang}}.
 There are common data nodes and structures that
 are present in all of these models or at least a subset of them.
 
